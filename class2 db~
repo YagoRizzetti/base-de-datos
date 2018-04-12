@@ -1,0 +1,64 @@
+Clase 2 base de datos:
+
+Exercice:
+
+Create a new database called imdb
+Create tables: film (film_id, title, description, release_year);
+actor (actor_id, first_name, last_name) , film_actor (actor_id, film_id)
+	Use autoincrement id
+	Create PKs
+
+Alter table add column last_update to film and actor
+Alter table add foreign keys to film_actor table 
+Insert some actors, films and who acted in each film
+
+-----------------------------------------------------------------------------------------------------------------------------------
+
+Answers:
+
+CREATE DATABASE imdb;
+USE imdb;
+CREATE TABLE film
+    ( film_id INT(11) NOT NULL AUTO_INCREMENT,
+    title VARCHAR(50) NOT NULL,
+    description TEXT(70),
+    release_year DATE,
+    CONSTRAINT film_pk PRIMARY KEY (film_id));
+
+CREATE TABLE actor
+    ( actor_id INT(11) NOT NULL AUTO_INCREMENT,
+    first_name VARCHAR(30) NOT NULL,
+    last_name VARCHAR(30),
+    CONSTRAINT actor_pk PRIMARY KEY (actor_id));
+
+CREATE TABLE film_actor
+    ( actor_id INT(11) NOT NULL,
+    film_id INT(11) NOT NULL);
+
+ALTER TABLE film
+    ADD last_update TIMESTAMP
+    AFTER release_year;
+
+ALTER TABLE actor
+    ADD last_update TIMESTAMP
+    AFTER last_name;
+
+ALTER TABLE film_actor ADD 
+    CONSTRAINT fk_actor
+    FOREIGN KEY (actor_id)
+    REFERENCES actor (actor_id);
+
+ALTER TABLE film_actor ADD 
+    CONSTRAINT fk_film
+    FOREIGN KEY (film_id)
+    REFERENCES film (film_id);
+
+INSERT INTO film(title, description, release_year, last_update) VALUES ("Titanic", "Jack y Rose, dos desconocidos se enbarcan en un viaje que cambiara sus vidas para siempre", "1997-06-08");
+INSERT INTO film(title, description, release_year, last_update) VALUES ("En busca de la Felicidad", "chris gardner persigue su sueño de convertirse en corredor de bolsa, pero antes debe superar varias trabas en el camino", "2007-02-01");
+
+INSERT INTO actor(first_name, last_name, last_update) VALUES ("Leonardo", "Dicaprio", '2018-03-19 11:50:30');
+INSERT INTO actor(first_name, last_name, last_update) VALUES ("Will ", "Smith", '2018-03-19 10:32:25');
+
+INSERT INTO film_actor(actor_id, film_id) VALUES (1, 1);
+INSERT INTO film_actor(actor_id, film_id) VALUES (2, 2);
+

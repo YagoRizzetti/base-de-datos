@@ -1,0 +1,16 @@
+clase 4 base de datos:
+
+Exercises:
+
+Mostrar el título y las características especiales de las películas PG-13
+Obtenga una lista de todas las diferentes duraciones de las películas.
+Muestra el título, rental_rate y replacement_cost de las películas que tienen replacement_cost de 20.00 a 24.00
+Mostrar el título, la categoría y la calificación de las películas que tienen 'Detrás de las escenas' como características_especiales 
+Mostrar nombre y apellido de los actores que actuaron en 'ZOOLANDER FICTION'
+Mostrar la dirección, ciudad y país de la tienda con id 1
+Muestre un par de títulos de películas y calificación de películas que tengan la misma calificación.
+Obtenga todas las películas disponibles en la id. De la tienda 2 y el nombre / apellido del gerente de esta tienda (el gerente aparecerá en todas las filas).
+
+----------------------------------------------------------------------------------------------------------------------------------------------------
+
+Answers:
