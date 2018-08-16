@@ -1,0 +1,16 @@
+1- select c.first_name , c.last_name , COUNT(r.rental_id), SUM(p.amount) from customer c , rental r, payment p where p.rental_id=r.rental_id and r.customer_id=c.customer_id HAVING SUM(p.amount) between 100 and 150 ; 
+
+2-
+
+3-SELECT c.customer_id , COUNT(film.film_id), film.rating 
+FROM customer c , film , inventory , rental 
+WHERE rental.customer_id = c.customer_id 
+AND rental.inventory_id = inventory.inventory_id 
+AND inventory.film_id = film.film_id 
+GROUP BY film.rating;
+
+4-SELECT actor.actor_id , actor.first_name , actor.last_name , COUNT(film.film_id), c.customer_id , c.first_name , c.last_name 
+FROM actor, film_actor fa , film , customer c 
+LEFT OUTER JOIN customer ON actor.last_name = customer.last_name 
+WHERE actor.actor_id = fa.actor_id 
+AND fa.film.id = film.film_id;

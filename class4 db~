@@ -2,15 +2,30 @@ clase 4 base de datos:
 
 Exercises:
 
-Mostrar el título y las características especiales de las películas PG-13
-Obtenga una lista de todas las diferentes duraciones de las películas.
-Muestra el título, rental_rate y replacement_cost de las películas que tienen replacement_cost de 20.00 a 24.00
-Mostrar el título, la categoría y la calificación de las películas que tienen 'Detrás de las escenas' como características_especiales 
-Mostrar nombre y apellido de los actores que actuaron en 'ZOOLANDER FICTION'
-Mostrar la dirección, ciudad y país de la tienda con id 1
-Muestre un par de títulos de películas y calificación de películas que tengan la misma calificación.
-Obtenga todas las películas disponibles en la id. De la tienda 2 y el nombre / apellido del gerente de esta tienda (el gerente aparecerá en todas las filas).
+Show title and special_features of films that are PG-13
+Get a list of all the different films duration.
+Show title, rental_rate and replacement_cost of films that have replacement_cost from 20.00 up to 24.00
+Show title, category and rating of films that have 'Behind the Scenes'   as special_features 
+Show first name and last name of actors that acted in 'ZOOLANDER FICTION'
+Show the address, city and country of the store with id 1
+Show pair of film titles and rating of films that have the same rating.
+Get all the films that are available in store id 2 and the manager first/last name of this store (the manager will appear in all the rows).
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------
 
 Answers:
+
+
+1- SELECT film.title, film.special_features from film WHERE film.rating = "PG-13";
+2- SELECT DISTINCT film.length FROM film;
+3- SELECT film.title, film.rental_rate, film.replacement_cost FROM film WHERE replacement_cost BETWEEN 20.00 AND 24.00;
+
+4- SELECT film.title, category.name, film.rating, film.special_features FROM film, film_category, category WHERE film.film_id = film_category.film_id AND film_category.category_id = category.category_id AND film.special_features = "Behind the Scenes";
+
+5- SELECT actor.first_name, actor.last_name FROM actor, film, film_actor WHERE actor.actor_id = film_actor.actor_id AND film_actor.film_id = film.film_id AND film.title = 'ZOOLANDER FICTION';
+
+6- SELECT address, city, country, store_id from store, city, address, country WHERE store.address_id = address.address_id AND address.city_id = city.city_id AND city.country_id = country.country_id AND store.store_id = 1;
+
+7- SELECT DISTINCT f1.title , f2.title, f1.rating, f2.rating FROM film f1, film f2 WHERE f1.rating = f2.rating;
+
+8- SELECT DISTINCT film.title, staff.first_name, staff.last_name FROM film, inventory, store, staff WHERE film.film_id = inventory.film_id AND store.store_id = inventory.store_id AND store.store_id = 2 AND staff.staff_id = store.manager_staff_id;

@@ -20,9 +20,9 @@ Answers:
 2- SELECT DISTINCT film.length FROM film;
 3- SELECT film.title, film.rental_rate, film.replacement_cost FROM film WHERE replacement_cost BETWEEN 20.00 AND 24.00;
 
-4- SELECT film.title, category.name, film.rating, film.special_features FROM film, film_category, category WHERE film.film_id = film_category.film_id AND film_category.category_id = category.category_id AND film.special_features LIKE "%Behind the Scenes%";
+4- SELECT film.title, category.name, film.rating, film.special_features FROM film, film_category, category WHERE film.film_id = film_category.film_id AND film_category.category_id = category.category_id AND film.special_features = "Behind the Scenes";
 
-5- SELECT actor.first_name, actor.last_name FROM actor, film, film_actor WHERE actor.actor_id = film_actor.actor_id AND film_actor.film_id = film.film_id AND film.title = 'ZOOLANDER FICTION';
+5- select a.last_name , a.first_name , f.title from film f , actor a , film_actor fa where f.film_id=fa.film_id and fa.actor_id=a.actor_id and f.title = "ZOOLANDER FICTION";
 
 6- SELECT address, city, country, store_id from store, city, address, country WHERE store.address_id = address.address_id AND address.city_id = city.city_id AND city.country_id = country.country_id AND store.store_id = 1;
 
