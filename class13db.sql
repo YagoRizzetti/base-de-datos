@@ -91,10 +91,69 @@ Resultados:
     delete from film
     where film_id=1;
     
-    6-
-        INSERT INTO rental (rental_date, inventory_id, customer_id, staff_id,)
-        VALUES(CURRENT_DATE(),
-              (SELECT inventory_id FROM rental INNER JOIN inventory using (inventory_ID) WHERE inventory_id=4581 and (SELECT film_id FROM inventory INNER JOIN film using (film_ID) WHERE film_id=1000)),
-              (SELECT customer_id FROM rental INNER JOIN customer using (customer_id) WHERE customer_id=1)
-              (SELECT staff_id FROM rental INNER JOIN staff using(staff_id) WHERE staff_id=1)
-              );
+6-
+    INSERT INTO rental (rental_date, inventory_id, customer_id, staff_id,)
+    VALUES(CURRENT_DATE(),
+    (SELECT inventory_id FROM rental INNER JOIN inventory using (inventory_ID) WHERE inventory_id=4581 and (SELECT film_id FROM inventory
+    INNER JOIN film using (film_ID) WHERE film_id=1000)),
+    (SELECT customer_id FROM rental INNER JOIN customer using (customer_id) WHERE customer_id=1)
+    (SELECT staff_id FROM rental INNER JOIN staff using(staff_id) WHERE staff_id=1));
+              
+Ejercitacion:
+
+1)
+    insert into customer (first_name,last_name,address_id)
+    select "pepe", "argento", address_id
+    from address
+    inner join city using(city_id)
+    inner join country using (country_id)
+    where country.country="United States"
+    order by address_id desc
+    limit 1;
+    
+    
+2)
+    insert into rental(rental_date,inventory_id,customer_id,store_id)
+    values(current_date,
+          (select inventory_id from inventory inner join film using(film_id) where title = "ZOOLANDER FICTION" limit 1)
+          (select customer_id from customer where store_id = 2 limit 1)
+          (select store_id from store where store_id=2 limit 1));
+          
+3)
+    update film
+    set release_year
+    (case
+    when rating = "G" then 2001
+    when rating = "PG" then 2002
+    when rating = "PG_13" then 2003
+    when rating = "R" then 2004
+    when rating = "NC_17" then 2005
+    end);
+    
+4)
+    update rental
+    set return_date = current_date 
+    where rental_id = 14769;
+    
+5)
+
+    delete from film_actor
+    where film_id = 1;
+    
+    delete from film_category
+    where film_id=1;
+    
+    delete from rental 
+    where inventoria_id in (select inventory_id from inventory where film_id=1);
+    
+    delete from film
+    where film_id=1
+    
+6)
+    insert into rental(rental_date,inventory_id,customer_id,staff_id)
+    values(current_date,
+           (select inventory_id from rental inner join inventory using(inventory_id) where inventory_id=4581 and (select film_id from inventory inner join film using(film_id)where film_id=1000)),
+           (select customer_id from rental inner join customer using(customer_id) where customer_id=1),
+           (select staff_id from rental inner join staff using(staff_id) where staff_id=1));
+    
+    
